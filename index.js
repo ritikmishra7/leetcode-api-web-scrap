@@ -4,7 +4,17 @@ const app = express();
 const cors = require('cors');
 const axios = require('axios');
 const cheerio = require('cheerio');
-app.use(cors());
+
+let origin = 'http://localhost:4200'; 
+ if (process.env.NODE_ENV === 'production') { 
+     origin = process.env.CORS_ORIGIN; 
+ } 
+  
+  
+ app.use(cors({ 
+     origin, 
+     credentials: true, 
+ }));
 
 env.config('./.env');
 app.use(express.json());
