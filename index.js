@@ -4,11 +4,11 @@ const app = express();
 const cors = require('cors');
 const axios = require('axios');
 const cheerio = require('cheerio');
-
+app.use(cors());
 
 env.config('./.env');
 app.use(express.json());
-app.use(cors());
+
 
 
 
@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
     res.send('Server is up and running.Please send POST request with userHandle to /leetcode');
 });
 
-app.post('/leetcode', async (req, res) => {
+app.post('/leetcode',cors(),async (req, res) => {
     try {
         const userHandle = req.body.userHandle;
         if (!userHandle) {
